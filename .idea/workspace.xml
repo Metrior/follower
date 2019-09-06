@@ -59,7 +59,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/List/List.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="194">
@@ -71,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/FollowButton/FollowButton.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="294">
@@ -242,12 +242,12 @@
       <updated>1567772757172</updated>
       <workItem from="1567772758546" duration="6000" />
       <workItem from="1567772791156" duration="4000" />
-      <workItem from="1567772807923" duration="7244000" />
+      <workItem from="1567772807923" duration="7385000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7254000" />
+    <option name="totallyTimeSpent" value="7395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="0" />
@@ -303,20 +303,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/FollowButton/FollowButton.js">
+    <entry file="file://$PROJECT_DIR$/src/components/List/List.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="194">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="22" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/List/List.js">
+    <entry file="file://$PROJECT_DIR$/src/components/FollowButton/FollowButton.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="22" />
+        <state relative-caret-position="294">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
