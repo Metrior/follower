@@ -16,7 +16,12 @@
       "id": 3,
       "name": "Paul",
       "group_id": 2,
-      "followers":[]
+      "followers":[{
+        "id": 2,
+        "name": "Sam",
+        "group_id": 1,
+        "followers":[]
+      }]
     },
     "user4": {
       "id": 4,

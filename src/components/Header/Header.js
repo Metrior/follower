@@ -1,60 +1,43 @@
 import React, {Component} from 'react';
-import firebase from "../../firebase";
-import {Link} from "react-router-dom"
 
 class Header extends Component {
     state = {
-        user: this.props.currentUser,
+        currentUser: this.props.currentUser,
     };
 
     componentDidUpdate(prevProps){
-        // if (this.props.currentUser !== prevProps.user) {
-        //     this.setState({ user: this.props.currentUser });
-        // }
+        if (this.props.currentUser !== prevProps.currentUser) {
+            this.setState({ currentUser: this.props.currentUser });
+        }
     }
 
-    handleSighout = () => {
-        firebase
-            .auth()
-            .signOut()
-            .then(()=>{console.log("signed out!")})
+    handleSighOut = () => {
+        localStorage.removeItem("currentUser");
+        this.setState({currentUser: null})
     };
 
-    getUserFromLocal = () => {
-        let user;
-
-        if (localStorage.getItem("currentUser") === null) {
-            user=[]
-        } else {
-            user = JSON.parse(localStorage.getItem("currentUser"))
-        }
-
-        return user
-    };
-
-    addUserToLocal = e => {
-      e.preventDefault();
-      let currentUser = e.target.value;
-      localStorage.setItem("currentUser", JSON.stringify(currentUser))
-    };
-
-    deleteUserFromLocal = e => {
-        e.preventDefault();
-        localStorage.removeItem("currentUser")
+    handleSignIn = () => {
+        localStorage.setItem("currentUser", JSON.stringify({
+            "id": 1,
+            "name": "Dan",
+            "group_id": 1,
+            "followers":[]
+        }));
+        this.setState({currentUser: localStorage.getItem("currentUser")})
     };
 
     render() {
         return (
             <div>
-                {this.props.currentUser ?
+                {this.state.currentUser ?
                     <div>
-                        welcome {this.props.currentUser}
-                        <button onClick={this.handleSighout}>Log out</button>
+                        welcome {JSON.parse(this.state.currentUser).name}
+                        <button onClick={this.handleSighOut}>Log out</button>
                     </div>
                     :
                     <div>
                         {<div>Must be signed in</div>}
-                        <Link to="/login">Login</Link>
+                        <button onClick={this.handleSignIn}>Log in as user1</button>
                     </div>
                 }
             </div>

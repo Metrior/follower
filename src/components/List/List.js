@@ -1,68 +1,54 @@
 import React, {Component} from 'react';
 import "./List.css"
-import db from "../../db";
 import FollowButton from "../FollowButton"
-import firebase from "../../firebase"
 
 class List extends Component {
     state = {
         currentUser: this.props.currentUser,
-        users: [],
+        users: this.props.users,
+        groups: this.props.groups
     };
 
-    componentDidUpdate(prevState){
-        if(prevState.currentUser !== this.props.currentUser) {
+    shouldComponentUpdate(nextProps){
+        const currentUser = this.props.currentUser !== nextProps.currentUser;
+        console.log(currentUser)
+        // this.setState({users:this.props.users, currentUser: this.props.currentUser})
+        return currentUser
+    }
+
+    componentDidUpdate(prevProps){
+        if (this.props.currentUser !== prevProps.currentUser) {
+            console.log(prevProps, this.props);
             this.setState({currentUser: this.props.currentUser})
         }
     }
 
-    componentDidMount(){
-        let currentUser = localStorage.getItem("currentUser");
-        this.setState({currentUser: currentUser});
-        this.addUserListener()
-    }
-
-    addUserListener = () => {
-        let users = [];
-        firebase.database().ref("users").on("value", snap => {
-            users.push(snap.val());
-            this.setState({
-                users: users[0],
-            })
-        });
-    };
-
-    getList = (users) => {
-        return Object.keys(users).map((key)=>(
-            <div key={key} className="user_block">
-                {console.log(users)}
-                {users[key].name !== this.props.currentUser ?
-                    <div>
-                        {users[key].name}
-                        {this.getFollowers(users[key])}
-                        <FollowButton user={users[key]} currentUser={this.props.currentUser}/>
-                    </div> : null
-                }
-            </div>
-        ))
-    };
-
-    getFollowers = user => {
-        let followers = 0;
-        let users = this.state.users;
-        Object.keys(users).map((key)=>{
-            console.log(users[key].following)
-            if (users[key].following.includes("mxqday7ExASbb1icKc3jjUU8wuE2")){
-                followers+=1
+    getList = users => {
+        return Object.values(users).map(user=>{
+            if (user.name !== this.state.currentUser.name){
+                return <div>
+                    {user.name}
+                    {user.followers.length}
+                    {this.getGroup(user, this.state.groups)}
+                    <FollowButton user={user} currentUser={this.state.currentUser}/>
+                </div>
             }
-        });
-        return (<div>{followers}</div>)
+        })
+    };
+
+    getGroup = (user, groups) => {
+        return Object.values(groups).map(group=>{
+            if (group.id === user.group_id){
+                return group.name
+            }
+        })
     };
 
     render() {
         return (
             <div>
                 {this.getList(this.state.users)}
+                <button onClick={()=>{console.log(this.props.currentUser)}}>shit</button>
             </div>
         );
     }
