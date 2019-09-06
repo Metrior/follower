@@ -6,27 +6,31 @@ import {setUsersList} from "../../redux/actions"
 class FollowButton extends Component {
     state = {
       followed: false,
-      innerButtonText: "Follow",
       user: this.props.user,
       currentUser: this.props.currentUser,
     };
 
+    componentDidMount(){
+        this.state.user.followers.map(follower=>{
+            if (follower.name===this.props.currentUser.name){
+                this.setState({followed:true})
+            }
+        })
+    }
+
     onMouseOverHandler = e => {
         e.preventDefault();
         if (this.state.followed === true) {
-            this.setState({innerButtonText: "Unfollow"});
-            e.target.className = "unfollow"
+            e.target.innerText = "Unfollow";
         }
     };
 
     onMouseLeaveHandler = e => {
         e.preventDefault();
         if (this.state.followed === false) {
-            this.setState({innerButtonText: "Follow"});
-            e.target.className = "follow"
+            e.target.innerText = "Follow";
         } else if (this.state.followed === true) {
-            this.setState({innerButtonText: "Following"});
-            e.target.className = "following"
+            e.target.innerText = "Following";
         }
     };
 
@@ -34,34 +38,32 @@ class FollowButton extends Component {
         const {followed, user,currentUser} = this.state;
       e.preventDefault();
       if (followed === false) {
-          const newFollowers = user.followers.push(JSON.parse(currentUser));
+          user.followers.push(currentUser);
           const allUsersList = this.props.currentUsersList;
-          allUsersList[user.followers]=newFollowers;
           this.props.setUsersList(allUsersList);
-          localStorage.setItem("usersList", allUsersList);
+          localStorage.setItem("usersList", JSON.stringify(allUsersList));
           this.setState({followed: true, innerButtonText: "Following"});
           e.target.className = "following"
       } else {
           let index = user.followers.indexOf(currentUser);
-          const newFollowers = user.followers.splice(index, 1);
+          user.followers.splice(index, 1);
           const allUsersList = this.props.currentUsersList;
-          allUsersList[user.followers]=newFollowers;
           this.props.setUsersList(allUsersList);
+          localStorage.setItem("usersList", JSON.stringify(allUsersList));
           this.setState({followed: false, innerButtonText: "Follow"});
           e.target.className = "follow"
       }
     };
 
     render() {
-        const {innerButtonText} = this.state;
         return (
                 <button
                     onMouseEnter={this.onMouseOverHandler}
                     onMouseLeave={this.onMouseLeaveHandler}
                     onClick={this.handleClick}
-                    className="follow"
+                    className={this.state.followed ? "following" : "follow"}
                 >
-                    {innerButtonText}
+                    {this.state.followed ? "Following" : "Follow"}
                 </button>
         );
     }

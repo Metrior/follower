@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import "./List.css"
 import FollowButton from "../FollowButton"
+import "./List.css"
 
 class List extends Component {
     state = {
@@ -24,17 +24,20 @@ class List extends Component {
     // }
 
     getList = users => {
-        return Object.values(users).map(user=>{
+        if(!users){
+            return null;
+        }
+        return Object.values(users).map((user,i)=>{
             if (user.name !== this.state.currentUser.name){
-                return <div>
+                return (<div key={i}>
                     {user.name}
-                    {user.followers.length}
-                    {this.getGroup(user, this.state.groups)}
+                    <span className="info"> {(user.followers || []).length} </span>
+                    <span className="info">  {this.getGroup(user, this.state.groups)} </span>
                     <FollowButton
                         users={this.state.users}
                         user={user}
                         currentUser={this.state.currentUser}/>
-                </div>
+                </div>)
             }
         })
     };

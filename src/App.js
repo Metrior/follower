@@ -8,9 +8,9 @@ import db from "./db";
 
 class App extends Component {
     componentDidMount(){
-        this.props.setUser(localStorage.getItem("currentUser"));
+        this.props.setUser(JSON.parse(localStorage.getItem("currentUser")));
         if (localStorage.getItem("usersList")) {
-            this.props.setUsersList(localStorage.getItem("usersList"))
+            this.props.setUsersList(JSON.parse(localStorage.getItem("usersList")))
         }
     }
 
@@ -19,7 +19,7 @@ class App extends Component {
             <div className="App">
                 <Header currentUser={this.props.currentUser}/>
                 {this.props.currentUser ?
-                    <List users={this.props.currentUsersList}
+                    <List users={this.props.usersList.currentUsersList}
                           groups={db.groups}
                           currentUser={this.props.currentUser}/>
                     : null}
@@ -30,7 +30,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
     currentUser: state.user.currentUser,
-    currentUsersList: state.usersList.currentUsersList
+    usersList: state.usersList
 });
 
 export default connect(mapStateToProps, {setUser, setUsersList})(App);
