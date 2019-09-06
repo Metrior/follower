@@ -1,20 +1,36 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Header from "./components/Header"
 import List from "./components/List"
 import './App.css';
+import {connect} from "react-redux";
+import {setUser, setUsersList} from "./redux/actions"
 import db from "./db";
 
-function App() {
-  return (
-      <div className="App">
-          <Header currentUser={localStorage.getItem("currentUser")}/>
-          {JSON.parse(localStorage.getItem("currentUser")) ?
-              <List users={db.users}
-                    groups={db.groups}
-                    currentUser={JSON.parse(localStorage.getItem("currentUser"))}/>
-              : null}
-      </div>
-  );
+class App extends Component {
+    componentDidMount(){
+        this.props.setUser(localStorage.getItem("currentUser"));
+        if (localStorage.getItem("usersList")) {
+            this.props.setUsersList(localStorage.getItem("usersList"))
+        }
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <Header currentUser={this.props.currentUser}/>
+                {this.props.currentUser ?
+                    <List users={this.props.currentUsersList}
+                          groups={db.groups}
+                          currentUser={this.props.currentUser}/>
+                    : null}
+            </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser,
+    currentUsersList: state.usersList.currentUsersList
+});
+
+export default connect(mapStateToProps, {setUser, setUsersList})(App);

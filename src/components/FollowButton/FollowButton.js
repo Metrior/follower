@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import "./FollowButton.css"
+import connect from "react-redux/es/connect/connect";
+import {setUsersList} from "../../redux/actions"
 
 class FollowButton extends Component {
     state = {
@@ -32,12 +34,19 @@ class FollowButton extends Component {
         const {followed, user,currentUser} = this.state;
       e.preventDefault();
       if (followed === false) {
-          user.followers.push(currentUser);
+          const newFollowers = user.followers.push(JSON.parse(currentUser));
+          const allUsersList = this.props.currentUsersList;
+          allUsersList[user.followers]=newFollowers;
+          this.props.setUsersList(allUsersList);
+          localStorage.setItem("usersList", allUsersList);
           this.setState({followed: true, innerButtonText: "Following"});
           e.target.className = "following"
       } else {
           let index = user.followers.indexOf(currentUser);
-          user.followers.splice(index, 1);
+          const newFollowers = user.followers.splice(index, 1);
+          const allUsersList = this.props.currentUsersList;
+          allUsersList[user.followers]=newFollowers;
+          this.props.setUsersList(allUsersList);
           this.setState({followed: false, innerButtonText: "Follow"});
           e.target.className = "follow"
       }
@@ -46,7 +55,6 @@ class FollowButton extends Component {
     render() {
         const {innerButtonText} = this.state;
         return (
-            <div>
                 <button
                     onMouseEnter={this.onMouseOverHandler}
                     onMouseLeave={this.onMouseLeaveHandler}
@@ -55,9 +63,12 @@ class FollowButton extends Component {
                 >
                     {innerButtonText}
                 </button>
-            </div>
         );
     }
 }
 
-export default FollowButton;
+const mapStateToProps = state => ({
+    currentUsersList: state.usersList.currentUsersList,
+});
+
+export default connect(mapStateToProps, {setUsersList})(FollowButton);

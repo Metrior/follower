@@ -9,19 +9,19 @@ class List extends Component {
         groups: this.props.groups
     };
 
-    shouldComponentUpdate(nextProps){
-        const currentUser = this.props.currentUser !== nextProps.currentUser;
-        console.log(currentUser)
-        // this.setState({users:this.props.users, currentUser: this.props.currentUser})
-        return currentUser
-    }
-
-    componentDidUpdate(prevProps){
-        if (this.props.currentUser !== prevProps.currentUser) {
-            console.log(prevProps, this.props);
-            this.setState({currentUser: this.props.currentUser})
-        }
-    }
+    // shouldComponentUpdate(nextProps){
+    //     const currentUser = this.props.currentUser !== nextProps.currentUser;
+    //     console.log(currentUser)
+    //     // this.setState({users:this.props.users, currentUser: this.props.currentUser})
+    //     return currentUser
+    // }
+    //
+    // componentDidUpdate(prevProps){
+    //     if (this.props.currentUser !== prevProps.currentUser) {
+    //         console.log(prevProps, this.props);
+    //         this.setState({currentUser: this.props.currentUser})
+    //     }
+    // }
 
     getList = users => {
         return Object.values(users).map(user=>{
@@ -30,7 +30,10 @@ class List extends Component {
                     {user.name}
                     {user.followers.length}
                     {this.getGroup(user, this.state.groups)}
-                    <FollowButton user={user} currentUser={this.state.currentUser}/>
+                    <FollowButton
+                        users={this.state.users}
+                        user={user}
+                        currentUser={this.state.currentUser}/>
                 </div>
             }
         })
@@ -47,8 +50,8 @@ class List extends Component {
     render() {
         return (
             <div>
+                Choose users to follow:
                 {this.getList(this.state.users)}
-                <button onClick={()=>{console.log(this.props.currentUser)}}>shit</button>
             </div>
         );
     }

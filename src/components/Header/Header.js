@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux"
+import {setUser} from "../../redux/actions"
 
 class Header extends Component {
     state = {
@@ -13,25 +15,26 @@ class Header extends Component {
 
     handleSighOut = () => {
         localStorage.removeItem("currentUser");
-        this.setState({currentUser: null})
+        this.props.setUser(null)
     };
 
     handleSignIn = () => {
-        localStorage.setItem("currentUser", JSON.stringify({
+        const firstUser = {
             "id": 1,
             "name": "Dan",
             "group_id": 1,
             "followers":[]
-        }));
-        this.setState({currentUser: localStorage.getItem("currentUser")})
+        };
+        localStorage.setItem("currentUser", JSON.stringify(firstUser));
+        this.props.setUser(firstUser)
     };
 
     render() {
         return (
             <div>
-                {this.state.currentUser ?
+                {this.props.currentUser ?
                     <div>
-                        welcome {JSON.parse(this.state.currentUser).name}
+                        welcome {this.props.currentUser.name}
                         <button onClick={this.handleSighOut}>Log out</button>
                     </div>
                     :
@@ -45,4 +48,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default connect(null, {setUser})(Header);
