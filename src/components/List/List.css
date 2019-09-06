@@ -1,0 +1,8 @@
+.user_block{
+    display: inline-flex;
+}
+
+.users_list{
+    width: 50px;
+    display: block;
+}

@@ -1,0 +1,11 @@
+.follow{
+    background-color: orange;
+}
+
+.following{
+    background-color: green;
+}
+
+.unfollow{
+    background-color: red;
+}
