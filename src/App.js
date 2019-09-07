@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Header from "./components/Header"
 import List from "./components/List"
-import './App.css';
+import styles from './App.module.css';
 import {connect} from "react-redux";
 import {setUser, setUsersList} from "./redux/actions"
 import db from "./db";
@@ -16,7 +16,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className={styles.app}>
                 <Header currentUser={this.props.currentUser}/>
                 {this.props.currentUser ?
                     <List users={this.props.usersList.currentUsersList}
