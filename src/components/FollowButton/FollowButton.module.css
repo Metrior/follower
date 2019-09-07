@@ -2,7 +2,7 @@
   background-color: orange;
 }
 
-.follow::after{
+.follow::after {
   content: "Follow";
 }
 
@@ -10,7 +10,7 @@
   background-color: green;
 }
 
-.following::after{
+.following::after {
   content: "Following";
 }
 
@@ -18,6 +18,6 @@
   background-color: red;
 }
 
-.following:hover::after{
+.following:hover::after {
   content: "Unfollow";
 }

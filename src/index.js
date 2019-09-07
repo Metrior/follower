@@ -7,14 +7,19 @@ import rootReducer from "./redux/reducers";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { composeWithDevTools } from "redux-devtools-extension";
-import {loadCurrentUser, loadUsersList, saveCurrentUser, saveUsersList} from "./localStorage"
+import {
+  loadCurrentUser,
+  loadUsersList,
+  saveCurrentUser,
+  saveUsersList
+} from "./localStorage";
 
-const persistedState = {user:loadCurrentUser(), usersList:loadUsersList()};
-const store = createStore(rootReducer,persistedState, composeWithDevTools());
+const persistedState = { user: loadCurrentUser(), usersList: loadUsersList() };
+const store = createStore(rootReducer, persistedState, composeWithDevTools());
 
-store.subscribe(()=>{
-    saveCurrentUser(store.getState().user);
-    saveUsersList(store.getState().usersList)
+store.subscribe(() => {
+  saveCurrentUser(store.getState().user);
+  saveUsersList(store.getState().usersList);
 });
 
 ReactDOM.render(

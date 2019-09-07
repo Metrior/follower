@@ -7,7 +7,7 @@ class FollowButton extends Component {
   state = {
     followed: false,
     user: this.props.user,
-    currentUser: this.props.currentUser,
+    currentUser: this.props.currentUser
   };
 
   componentDidMount() {
@@ -18,7 +18,7 @@ class FollowButton extends Component {
     });
   }
 
-  handleClick = e => {
+  handleClick = () => {
     const { followed, user, currentUser } = this.state;
     if (followed === false) {
       user.followers.push(currentUser);
