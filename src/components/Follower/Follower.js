@@ -1,13 +1,40 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
+import Header from "../Header";
+import List from "../List";
+import db from "../../db";
+import connect from "react-redux/es/connect/connect";
+import { setUser, setUsersList } from "../../redux/actions";
 
 class Follower extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        );
+  componentDidMount() {
+    this.props.setUser(JSON.parse(localStorage.getItem("currentUser")));
+    if (localStorage.getItem("usersList")) {
+      this.props.setUsersList(JSON.parse(localStorage.getItem("usersList")));
     }
+  }
+
+  render() {
+    return (
+      <div>
+        <Header currentUser={this.props.currentUser} />
+        {this.props.currentUser ? (
+          <List
+            users={this.props.usersList.currentUsersList}
+            groups={db.groups}
+            currentUser={this.props.currentUser}
+          />
+        ) : null}
+      </div>
+    );
+  }
 }
 
-export default Follower;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+  usersList: state.usersList
+});
+
+export default connect(
+  mapStateToProps,
+  { setUser, setUsersList }
+)(Follower);
