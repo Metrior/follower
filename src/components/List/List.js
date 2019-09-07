@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FollowButton from "../FollowButton";
+import User from "../User";
 import "./List.css";
 
 class List extends Component {
@@ -13,33 +13,13 @@ class List extends Component {
     if (!users) {
       return null;
     }
-    return Object.values(users).map((user, i) => {
-      if (user.name !== this.state.currentUser.name) {
-        return (
-          <div key={i}>
-            {user.name}
-            <span className="info"> {(user.followers || []).length} </span>
-            <span className="info">
-              {" "}
-              {this.getGroup(user, this.state.groups)}{" "}
-            </span>
-            <FollowButton
-              users={this.state.users}
-              user={user}
-              currentUser={this.state.currentUser}
-            />
-          </div>
-        );
-      }
-    });
-  };
-
-  getGroup = (user, groups) => {
-    return Object.values(groups).map(group => {
-      if (group.id === user.group_id) {
-        return group.name;
-      }
-    });
+    return (
+      <User
+        users={users}
+        currentUser={this.state.currentUser}
+        groups={this.state.groups}
+      />
+    );
   };
 
   render() {
