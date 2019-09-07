@@ -6,13 +6,6 @@ import {connect} from "react-redux";
 import { setUser, setUsersList } from "../../redux/actions";
 
 class Follower extends Component {
-  componentDidMount() {
-    this.props.setUser(JSON.parse(localStorage.getItem("currentUser")));
-    if (localStorage.getItem("usersList")) {
-      this.props.setUsersList(JSON.parse(localStorage.getItem("usersList")));
-    }
-  }
-
   render() {
     return (
       <div>

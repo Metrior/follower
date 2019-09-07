@@ -8,7 +8,6 @@ class Header extends Component {
   };
 
   handleSighOut = () => {
-    localStorage.removeItem("currentUser");
     this.props.setUser(null);
   };
 
@@ -19,7 +18,6 @@ class Header extends Component {
       group_id: 1,
       followers: []
     };
-    localStorage.setItem("currentUser", JSON.stringify(firstUser));
     this.props.setUser(firstUser);
   };
 

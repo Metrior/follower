@@ -33,23 +33,17 @@ class FollowButton extends Component {
     }
   };
 
-  setUsers = () => {
-    const allUsersList = this.props.currentUsersList;
-    this.props.setUsersList(allUsersList);
-    localStorage.setItem("usersList", JSON.stringify(allUsersList));
-  };
-
   handleClick = e => {
     const { followed, user, currentUser } = this.state;
     e.preventDefault();
     if (followed === false) {
       user.followers.push(currentUser);
-      this.setUsers();
+      this.props.setUsersList(this.props.currentUsersList);
       this.setState({ followed: true, buttonText: "Unfollow" });
     } else {
       let index = user.followers.indexOf(currentUser);
       user.followers.splice(index, 1);
-      this.setUsers();
+      this.props.setUsersList(this.props.currentUsersList);
       this.setState({ followed: false, buttonText: "Follow" });
     }
   };
