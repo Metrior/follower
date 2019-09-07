@@ -11,7 +11,6 @@ import {loadCurrentUser, loadUsersList, saveCurrentUser, saveUsersList} from "./
 
 const persistedState = {user:loadCurrentUser(), usersList:loadUsersList()};
 const store = createStore(rootReducer,persistedState, composeWithDevTools());
-console.log(store.getState());
 
 store.subscribe(()=>{
     saveCurrentUser(store.getState().user);

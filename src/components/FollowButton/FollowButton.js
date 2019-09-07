@@ -35,7 +35,6 @@ class FollowButton extends Component {
 
   handleClick = e => {
     const { followed, user, currentUser } = this.state;
-    e.preventDefault();
     if (followed === false) {
       user.followers.push(currentUser);
       this.props.setUsersList(this.props.currentUsersList);
