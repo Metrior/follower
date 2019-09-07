@@ -20,8 +20,11 @@ class FollowButton extends Component {
         })
     }
 
+    // это очень плохо, отнести в цсс
     onMouseOverHandler = e => {
+        // ты вообще понимаешь, зачем тут preventDefault?) он не нужен вроде вообще
         e.preventDefault();
+        // тут достаточно написать просто if(this.state.followed)
         if (this.state.followed === true) {
             this.setState({buttonText:"Unfollow", buttonClass:"unfollow"});
         }
@@ -47,6 +50,12 @@ class FollowButton extends Component {
       e.preventDefault();
       if (followed === false) {
           user.followers.push(currentUser);
+          // тут вот гланвая архитектурная проблема – у тебя в приложении самая главная – кнопка Follow, она делает всю работу
+          // так делать нельзя. Кнопка максимум может писать в стор, что этот юзер теперь зафолловлен.
+          // а стор уже, получая новую инфу, в эффектах может менять весь список юзеров, который хранится.
+          // Представь, что это сервер – ты оптравлешь только один запрос folllow/unfollow, а бек уже сам пересчитывает список
+          // в целом это ошибка, вполне допустимая для джуна, но просто нужно понимать суть
+
           this.setUsers();
           this.setState({followed: true, buttonText: "Unfollow", buttonClass:"unfollow"});
       } else {

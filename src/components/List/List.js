@@ -9,6 +9,7 @@ class List extends Component {
         groups: this.props.groups
     };
 
+    // из финального кода удалить все комментарии
     // shouldComponentUpdate(nextProps){
     //     const currentUser = this.props.currentUser !== nextProps.currentUser;
     //     console.log(currentUser)
@@ -28,7 +29,8 @@ class List extends Component {
             return null;
         }
         return Object.values(users).map((user,i)=>{
-            if (user.name !== this.state.currentUser.name){
+            if (user.name !== this.state.currentUser.name) {
+                // создай копонент User, будет изящнее
                 return (<div key={i}>
                     {user.name}
                     <span className="info"> {(user.followers || []).length} </span>
@@ -43,6 +45,8 @@ class List extends Component {
     };
 
     getGroup = (user, groups) => {
+        // тут у тебя линтер ругается, все ошибки линтера надо устранить
+        // плюс установи prettier, чтобы все было красиво с пробелами и кодстайлом. это сделает твой код визуально куда чище
         return Object.values(groups).map(group=>{
             if (group.id === user.group_id){
                 return group.name

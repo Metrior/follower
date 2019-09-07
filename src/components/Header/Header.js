@@ -8,13 +8,18 @@ class Header extends Component {
     };
 
     componentDidUpdate(prevProps){
+        // currentUser это объект, сравнивая два объекта с идентичным кодержимым,
+        // но разными ссылками, ты получишь false. Тут лучше сравнивать уникальные поля, например, id
         if (this.props.currentUser !== prevProps.currentUser) {
+            // currentUser можно вынимать из стора, зачем передавать его как пропс?
+            // Или ты передаешь что-то как пропс снаружи, или меняешь это значнеие внутри кода компонента, иначе получается каша
             this.setState({ currentUser: this.props.currentUser });
         }
     }
 
     handleSighOut = () => {
         localStorage.removeItem("currentUser");
+        // в идеале надо прикрутить к редаксу эффекты – чтобы он, устанавляия значние, автоматом и LS писал
         this.props.setUser(null)
     };
 
