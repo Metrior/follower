@@ -9,20 +9,6 @@ class List extends Component {
         groups: this.props.groups
     };
 
-    // shouldComponentUpdate(nextProps){
-    //     const currentUser = this.props.currentUser !== nextProps.currentUser;
-    //     console.log(currentUser)
-    //     // this.setState({users:this.props.users, currentUser: this.props.currentUser})
-    //     return currentUser
-    // }
-    //
-    // componentDidUpdate(prevProps){
-    //     if (this.props.currentUser !== prevProps.currentUser) {
-    //         console.log(prevProps, this.props);
-    //         this.setState({currentUser: this.props.currentUser})
-    //     }
-    // }
-
     getList = users => {
         if(!users){
             return null;

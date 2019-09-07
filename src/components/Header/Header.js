@@ -7,12 +7,6 @@ class Header extends Component {
         currentUser: this.props.currentUser,
     };
 
-    componentDidUpdate(prevProps){
-        if (this.props.currentUser !== prevProps.currentUser) {
-            this.setState({ currentUser: this.props.currentUser });
-        }
-    }
-
     handleSighOut = () => {
         localStorage.removeItem("currentUser");
         this.props.setUser(null)

@@ -20,15 +20,13 @@ class FollowButton extends Component {
         })
     }
 
-    onMouseOverHandler = e => {
-        e.preventDefault();
-        if (this.state.followed === true) {
+    onMouseOverHandler = () => {
+        if (this.state.followed) {
             this.setState({buttonText:"Unfollow", buttonClass:"unfollow"});
         }
     };
 
-    onMouseLeaveHandler = e => {
-        e.preventDefault();
+    onMouseLeaveHandler = () => {
         if (this.state.followed === false) {
             this.setState({buttonText:"Follow",buttonClass:"follow"});
         } else if (this.state.followed === true) {
