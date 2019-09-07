@@ -23,12 +23,12 @@ class FollowButton extends Component {
     if (followed === false) {
       user.followers.push(currentUser);
       this.props.setUsersList(this.props.currentUsersList);
-      this.setState({ followed: true, buttonText: "Unfollow" });
+      this.setState({ followed: true });
     } else {
       let index = user.followers.indexOf(currentUser);
       user.followers.splice(index, 1);
       this.props.setUsersList(this.props.currentUsersList);
-      this.setState({ followed: false, buttonText: "Follow" });
+      this.setState({ followed: false });
     }
   };
 
