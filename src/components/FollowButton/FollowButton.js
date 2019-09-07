@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import "./FollowButton.css"
+import styles from "./FollowButton.module.css"
 import connect from "react-redux/es/connect/connect";
 import {setUsersList} from "../../redux/actions"
 
@@ -8,29 +8,28 @@ class FollowButton extends Component {
       followed: false,
       user: this.props.user,
       currentUser: this.props.currentUser,
-      buttonText: "Follow",
-      buttonClass: "follow"
+      buttonText: "Follow"
     };
 
     componentDidMount(){
         this.state.user.followers.map(follower=>{
             if (follower.name===this.props.currentUser.name){
-                this.setState({followed:true, buttonText: "Following", buttonClass: "following"})
+                this.setState({followed:true, buttonText: "Following"})
             }
         })
     }
 
     onMouseOverHandler = () => {
         if (this.state.followed) {
-            this.setState({buttonText:"Unfollow", buttonClass:"unfollow"});
+            this.setState({buttonText:"Unfollow"});
         }
     };
 
     onMouseLeaveHandler = () => {
         if (this.state.followed === false) {
-            this.setState({buttonText:"Follow",buttonClass:"follow"});
+            this.setState({buttonText:"Follow"});
         } else if (this.state.followed === true) {
-            this.setState({buttonText:"Following", buttonClass:"following"});
+            this.setState({buttonText:"Following"});
         }
     };
 
@@ -46,12 +45,12 @@ class FollowButton extends Component {
       if (followed === false) {
           user.followers.push(currentUser);
           this.setUsers();
-          this.setState({followed: true, buttonText: "Unfollow", buttonClass:"unfollow"});
+          this.setState({followed: true, buttonText: "Unfollow"});
       } else {
           let index = user.followers.indexOf(currentUser);
           user.followers.splice(index, 1);
           this.setUsers();
-          this.setState({followed: false, buttonText: "Follow", buttonClass:"follow"});
+          this.setState({followed: false, buttonText: "Follow"});
       }
     };
 
@@ -61,7 +60,7 @@ class FollowButton extends Component {
                     onMouseOver={this.onMouseOverHandler}
                     onMouseLeave={this.onMouseLeaveHandler}
                     onClick={this.handleClick}
-                    className={this.state.buttonClass}
+                    className={this.state.followed ? styles.following : styles.follow}
                 >
                     {this.state.buttonText}
                 </button>

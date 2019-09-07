@@ -6,6 +6,6 @@
     background-color: green;
 }
 
-.unfollow{
+.following:hover{
     background-color: red;
 }
