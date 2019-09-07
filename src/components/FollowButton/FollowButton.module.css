@@ -2,10 +2,22 @@
   background-color: orange;
 }
 
+.follow::after{
+  content: "Follow";
+}
+
 .following {
   background-color: green;
 }
 
+.following::after{
+  content: "Following";
+}
+
 .following:hover {
   background-color: red;
+}
+
+.following:hover::after{
+  content: "Unfollow";
 }

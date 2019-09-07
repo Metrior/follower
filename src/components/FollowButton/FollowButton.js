@@ -8,7 +8,6 @@ class FollowButton extends Component {
     followed: false,
     user: this.props.user,
     currentUser: this.props.currentUser,
-    buttonText: "Follow"
   };
 
   componentDidMount() {
@@ -18,20 +17,6 @@ class FollowButton extends Component {
       }
     });
   }
-
-  onMouseOverHandler = () => {
-    if (this.state.followed) {
-      this.setState({ buttonText: "Unfollow" });
-    }
-  };
-
-  onMouseLeaveHandler = () => {
-    if (this.state.followed === false) {
-      this.setState({ buttonText: "Follow" });
-    } else if (this.state.followed === true) {
-      this.setState({ buttonText: "Following" });
-    }
-  };
 
   handleClick = e => {
     const { followed, user, currentUser } = this.state;
@@ -50,12 +35,9 @@ class FollowButton extends Component {
   render() {
     return (
       <button
-        onMouseOver={this.onMouseOverHandler}
-        onMouseLeave={this.onMouseLeaveHandler}
         onClick={this.handleClick}
         className={this.state.followed ? styles.following : styles.follow}
       >
-        {this.state.buttonText}
       </button>
     );
   }

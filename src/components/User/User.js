@@ -12,10 +12,10 @@ class User extends Component {
   };
 
   render() {
-    return Object.values(this.props.users).map((user, i) => {
+      const {user} = this.props;
       if (user.name !== this.props.currentUser.name) {
         return (
-          <div key={i}>
+          <div>
             {user.name}
             <span className={styles.info}>
               {" "}
@@ -32,8 +32,7 @@ class User extends Component {
             />
           </div>
         );
-      }
-    });
+      } else return null
   }
 }
 

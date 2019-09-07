@@ -12,13 +12,14 @@ class List extends Component {
     if (!users) {
       return null;
     }
-    return (
+    return Object.values(this.props.users).map((user, index) => (
       <User
-        users={users}
+        key={index}
+        user={user}
         currentUser={this.state.currentUser}
         groups={this.state.groups}
       />
-    );
+    ));
   };
 
   render() {
