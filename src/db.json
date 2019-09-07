@@ -4,88 +4,90 @@
       "id": 1,
       "name": "Dan",
       "group_id": 1,
-      "followers":[]
+      "followers": []
     },
     "user2": {
       "id": 2,
       "name": "Sam",
       "group_id": 1,
-      "followers":[]
+      "followers": []
     },
     "user3": {
       "id": 3,
       "name": "Paul",
       "group_id": 2,
-      "followers":[{
-        "id": 2,
-        "name": "Sam",
-        "group_id": 1,
-        "followers":[]
-      }]
+      "followers": [
+        {
+          "id": 2,
+          "name": "Sam",
+          "group_id": 1,
+          "followers": []
+        }
+      ]
     },
     "user4": {
       "id": 4,
       "name": "Rudi",
       "group_id": 2,
-      "followers":[]
+      "followers": []
     },
     "user5": {
       "id": 5,
       "name": "Stive",
       "group_id": 3,
-      "followers":[]
+      "followers": []
     },
     "user6": {
       "id": 6,
       "name": "Jack",
       "group_id": 3,
-      "followers":[]
+      "followers": []
     },
     "user7": {
       "id": 7,
       "name": "Suzzy",
       "group_id": 4,
-      "followers":[]
+      "followers": []
     },
     "user8": {
       "id": 8,
       "name": "Marry",
       "group_id": 4,
-      "followers":[]
+      "followers": []
     },
     "user9": {
       "id": 9,
       "name": "Angela",
       "group_id": 5,
-      "followers":[]
+      "followers": []
     },
     "user10": {
       "id": 10,
       "name": "Bill",
       "group_id": 5,
-      "followers":[]
+      "followers": []
     }
   },
-  "groups":{
-    "group1":{
-      "id":1,
-      "name":"Ruby developers"
+  "groups": {
+    "group1": {
+      "id": 1,
+      "name": "Ruby developers"
     },
-    "group2":{
-      "id":2,
-      "name":"Python developers"
+    "group2": {
+      "id": 2,
+      "name": "Python developers"
     },
-    "group3":{
-      "id":3,
-      "name":"C++ developers"
+    "group3": {
+      "id": 3,
+      "name": "C++ developers"
     },
-    "group4":{
-      "id":4,
-      "name":"C# developers"
+    "group4": {
+      "id": 4,
+      "name": "C# developers"
     },
-    "group5":{
-      "id":5,
-      "name":"Java developers"
+    "group5": {
+      "id": 5,
+      "name": "Java developers"
     }
   }
 }

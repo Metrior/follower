@@ -1,11 +1,11 @@
-.follow{
-    background-color: orange;
+.follow {
+  background-color: orange;
 }
 
-.following{
-    background-color: green;
+.following {
+  background-color: green;
 }
 
-.following:hover{
-    background-color: red;
+.following:hover {
+  background-color: red;
 }

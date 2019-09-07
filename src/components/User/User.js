@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FollowButton from "../FollowButton";
-import styles from "./User.module.css"
+import styles from "./User.module.css";
 
 class User extends Component {
   getGroup = (user, groups) => {
@@ -17,7 +17,10 @@ class User extends Component {
         return (
           <div key={i}>
             {user.name}
-            <span className={styles.info}> {(user.followers || []).length} </span>
+            <span className={styles.info}>
+              {" "}
+              {(user.followers || []).length}{" "}
+            </span>
             <span className={styles.info}>
               {" "}
               {this.getGroup(user, this.props.groups)}{" "}

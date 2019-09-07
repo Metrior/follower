@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../Header";
 import List from "../List";
 import db from "../../db";
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import { setUser, setUsersList } from "../../redux/actions";
 
 class Follower extends Component {

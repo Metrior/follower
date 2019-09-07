@@ -1,3 +1,3 @@
-import FollowButton from "./FollowButton"
+import FollowButton from "./FollowButton";
 
-export default FollowButton
+export default FollowButton;
